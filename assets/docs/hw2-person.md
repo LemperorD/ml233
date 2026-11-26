@@ -1,12 +1,12 @@
 # 个人作业第 2 题：全球特色美食图像分类方法指导
 
-课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 5 页；[课程邀请入口](https://www.kaggle.com/t/65c821721ed54a978a49a59dbfb6374f) 来自 PDF 第 13 页。文档与代码目录按 PDF 题号统一编号；本地数据目录保留下载时的名称，对应关系见[总览](README.md#题目仓库编号与评分标准)。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 5 页；[课程邀请入口](https://www.kaggle.com/t/65c821721ed54a978a49a59dbfb6374f) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 根据食物照片预测十个类别，课程主指标为 Accuracy。训练图只有 912 张：先用颜色直方图、纹理等传统特征加线性分类器建立对照；确认规则允许预训练后，再验证冻结特征与小规模微调。PDF 未明确预训练政策；不使用预训练时，可比较传统特征与小型 CNN。
 
 ## 数据与读取
 
-- 目录：`datasets/ml-hw1-person/`，竞赛标识 `ml-hw1-person`。
+- 目录：`datasets/ml-hw2-person/`，竞赛标识 `ml-hw1-person`。
 - `train.csv` 为 912 行，包含 `id,label`；`test.csv` 为 608 行，仅有 `id`。
 - 图片分别在 `train_images/` 和 `test_images/`；`id` 已包含 `.jpg`，不要再次添加扩展名。
 - 图片均为 RGB，尺寸不统一。输出模板 `submission_example.csv` 有 608 行，列为 `id,label`。
@@ -47,10 +47,10 @@
 
 ## 来源与规则入口
 
-数据依据：[训练 CSV](../../datasets/ml-hw1-person/train.csv)、[提交模板](../../datasets/ml-hw1-person/submission_example.csv) 与 [统计快照](data_profile.json)。
+数据依据：[训练 CSV](../../datasets/ml-hw2-person/train.csv)、[提交模板](../../datasets/ml-hw2-person/submission_example.csv) 与 [统计快照](data_profile.json)。
 
 课程评分 Accuracy 依据上述 PDF；[竞赛页面](https://www.kaggle.com/competitions/ml-hw1-person) 用于核实预训练与外部数据等补充规则；[PyTorch 迁移学习教程](https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html) 提供冻结特征与微调的实现参考。
 
 ## 代码实现
 
-本题代码位于 `src/hw2_person/`，读取、模型、训练、评估和预测各自独立，具体命令见 [本题运行说明](../../src/hw2_person/README.md)。模型仅在本作业内复用。
+[训练、评估与结果查看](../../src/hw2_person/README.md)。

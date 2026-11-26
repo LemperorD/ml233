@@ -17,7 +17,7 @@ from .predict import predict_run
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-dir', type=Path, default=DEFAULT_DATA)
-    parser.add_argument('--output-dir', type=Path, default=Path('outputs/hw1_person/ridge'))
+    parser.add_argument('--output-dir', type=Path, default=Path('outputs/hw1_person/baseline'))
     parser.add_argument('--model', choices=['ridge', 'extra_trees', 'mlp'], default='ridge')
     parser.add_argument('--folds', type=int, default=5)
     parser.add_argument('--alpha', type=float, default=10.0)
@@ -39,6 +39,7 @@ def main():
     (run / 'config.json').write_text(json.dumps({k: str(v) if isinstance(v, Path) else v
                                                for k, v in vars(args).items()}, indent=2))
     splits, scores, baseline = [], [], np.zeros(len(frame))
+    history = {"folds": []}
     for fold, (train_idx, valid_idx) in enumerate(GroupKFold(args.folds).split(frame, groups=groups)):
         model = build_model(args.model, args.seed, args.alpha, args.trees, args.epochs)
         model.fit(frame.iloc[train_idx][FEATURES], frame.iloc[train_idx].quality)
@@ -50,12 +51,15 @@ def main():
                        'validation_ids': frame.iloc[valid_idx].id.tolist()})
         scores.append(score)
         joblib.dump(model, run / f'fold_{fold}.joblib')
+        history['folds'].append(list(getattr(model[-1], 'loss_history_', [])) if args.model != 'extra_trees' else [])
         print(f'fold {fold + 1}: {score}', flush=True)
     (run / 'splits.json').write_text(json.dumps({'fingerprint': fingerprint(frame), 'folds': splits}))
     result = evaluate_run(run, args.data_dir)
     model = build_model(args.model, args.seed, args.alpha, args.trees, args.epochs)
     model.fit(frame[FEATURES], frame.quality)
     joblib.dump(model, run / 'model.joblib')
+    history['full_training'] = list(getattr(model[-1], 'loss_history_', [])) if args.model != 'extra_trees' else []
+    (run / 'history.json').write_text(json.dumps(history, indent=2))
     predict_run(run, args.data_dir)
     result.update(folds=scores, mean_baseline=metrics(frame.quality, baseline),
                   duplicate_rows=int(frame.duplicated(FEATURES, keep=False).sum()),

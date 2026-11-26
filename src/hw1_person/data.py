@@ -5,7 +5,7 @@ import hashlib
 import numpy as np
 import pandas as pd
 
-DEFAULT_DATA = Path(__file__).resolve().parents[2] / 'datasets' / 'ml-hw2-person'
+DEFAULT_DATA = Path(__file__).resolve().parents[2] / 'datasets' / 'ml-hw1-person'
 FEATURES = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar',
             'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density',
             'pH', 'sulphates', 'alcohol']

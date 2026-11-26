@@ -48,7 +48,7 @@
       "images_by_directory": {},
       "image_sizes": {}
     },
-    "ml-hw1-person": {
+    "ml-hw2-person": {
       "csv": {
         "submission_example.csv": {
           "rows": 608,
@@ -244,7 +244,7 @@
       "images_by_directory": {},
       "image_sizes": {}
     },
-    "ml-hw2-person": {
+    "ml-hw1-person": {
       "csv": {
         "submission_example.csv": {
           "rows": 480,

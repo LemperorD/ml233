@@ -18,7 +18,7 @@ from .predict import predict_run
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-dir', type=Path, default=DEFAULT_DATA)
-    parser.add_argument('--output-dir', type=Path, default=Path('outputs/hw2_person/cnn'))
+    parser.add_argument('--output-dir', type=Path, default=Path('outputs/hw2_person/baseline'))
     parser.add_argument('--model', choices=['cnn', 'histogram'], default='cnn')
     parser.add_argument('--epochs', type=int, default=20)
     parser.add_argument('--patience', type=int, default=5)

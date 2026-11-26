@@ -9,7 +9,7 @@ from PIL import Image, ImageEnhance, ImageOps
 import torch
 from torch.utils.data import Dataset
 
-DEFAULT_DATA = Path(__file__).resolve().parents[2] / 'datasets' / 'ml-hw1-person'
+DEFAULT_DATA = Path(__file__).resolve().parents[2] / 'datasets' / 'ml-hw2-person'
 CLASSES = ['burger', 'churros', 'crepes', 'falafel', 'hot_dog', 'pad_thai',
            'pani_puri', 'pretzel', 'shawarma', 'tacos']
 CLASS_TO_IDX = {name: index for index, name in enumerate(CLASSES)}

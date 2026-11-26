@@ -1,12 +1,12 @@
 # 个人作业第 1 题：红葡萄酒质量预测方法指导
 
-课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 4 页；[课程邀请入口](https://www.kaggle.com/t/8c018b4ff37d4782b84f650e62f50a49) 来自 PDF 第 13 页。文档与代码目录按 PDF 题号统一编号；本地数据目录保留下载时的名称，对应关系见[总览](README.md#题目仓库编号与评分标准)。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 4 页；[课程邀请入口](https://www.kaggle.com/t/8c018b4ff37d4782b84f650e62f50a49) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 利用十一项理化指标预测葡萄酒质量。PDF 已明确按 RMSE 评分，采用连续回归，提交保留小数；不因原始标签是整数而改用分类准确率选模。
 
 ## 数据与风险
 
-目录为 `datasets/ml-hw2-person/`，对应竞赛标识 `ml-hw2-personal`，注意本地目录与竞赛名称并不完全相同。训练集 1119 行，测试集 480 行，无空字段。
+目录为 `datasets/ml-hw1-person/`，对应竞赛标识 `ml-hw2-personal`，注意本地目录与竞赛名称并不完全相同。训练集 1119 行，测试集 480 行，无空字段。
 
 输入为 `fixed acidity`、`volatile acidity`、`citric acid`、`residual sugar`、`chlorides`、`free sulfur dioxide`、`total sulfur dioxide`、`density`、`pH`、`sulphates`、`alcohol`；`id` 仅用于对齐，`quality` 是目标。训练质量分布为 `3:4`、`4:37`、`5:484`、`6:436`、`7:145`、`8:13`。
 
@@ -44,10 +44,10 @@
 
 ## 来源与规则入口
 
-数据依据：[训练 CSV](../../datasets/ml-hw2-person/train.csv)、[提交模板](../../datasets/ml-hw2-person/submission_example.csv) 和 [统计快照](data_profile.json)。
+数据依据：[训练 CSV](../../datasets/ml-hw1-person/train.csv)、[提交模板](../../datasets/ml-hw1-person/submission_example.csv) 和 [统计快照](data_profile.json)。
 
 课程回归定义与 RMSE 依据上述 PDF；[竞赛页面](https://www.kaggle.com/competitions/ml-hw2-personal) 用于核实补充规则；分组验证和预处理原则见[总览方法参考](README.md#方法参考)。
 
 ## 代码实现
 
-本题代码位于 `src/hw1_person/`，读取、模型、训练、评估和预测各自独立，具体命令见 [本题运行说明](../../src/hw1_person/README.md)。模型仅在本作业内复用。
+[训练、评估与结果查看](../../src/hw1_person/README.md)。
