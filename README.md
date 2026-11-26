@@ -4,14 +4,62 @@
 
 ## 环境准备
 
+在项目根目录创建并激活独立环境，后续安装与运行均使用该环境的 `python`：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install numpy pandas scikit-learn pillow kagglehub
+```
+
 - 注册 Kaggle 账户并配置 API Token，参考 [KaggleHub 认证说明](https://github.com/Kaggle/kagglehub#authenticate)。
-- 安装下载依赖：`python3 -m pip install kagglehub`。
-- 如需交互式配置认证，执行 `python3 -c "import kagglehub; kagglehub.login()"`。
+- 如需交互式配置认证，执行 `python -c "import kagglehub; kagglehub.login()"`。
+
+### 安装 PyTorch 与检测 CUDA
+
+当前项目的 Python 3.10 环境使用 CUDA 12.8 版 PyTorch，从官方源安装：
+
+```bash
+source .venv/bin/activate
+python -m pip install "torch==2.11.0" --index-url https://download.pytorch.org/whl/cu128
+python -m pip check
+```
+
+其他机器应根据显卡与驱动选择安装版本，参考 [PyTorch 官方安装说明](https://pytorch.org/get-started/locally/)。`nvidia-smi` 显示的是驱动支持的 CUDA 版本，`torch.version.cuda` 显示的是 PyTorch 构建使用的 CUDA 版本，两者不必完全一致。
+
+快速检测 CUDA 是否可用：
+
+```bash
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+输出 `True` 表示当前进程可以使用 CUDA。进一步查看版本、显卡，并实际执行一次 GPU 矩阵运算：
+
+```bash
+python - <<'PY'
+import torch
+
+print("PyTorch:", torch.__version__)
+print("PyTorch CUDA:", torch.version.cuda)
+available = torch.cuda.is_available()
+print("CUDA available:", available)
+print("GPU count:", torch.cuda.device_count())
+if available:
+    print("GPU:", torch.cuda.get_device_name(0))
+    x = torch.randn(256, 256, device="cuda")
+    y = x @ x.T
+    torch.cuda.synchronize()
+    print("GPU matrix multiplication:", y.shape, y.device)
+PY
+```
+
+若输出 `False`，先运行 `nvidia-smi` 检查驱动和当前运行环境是否能访问显卡，再确认 `torch.version.cuda` 不是 `None`（`None` 表示安装了 CPU 版）。容器或沙箱还需要获得 GPU 访问权限。
 
 ## 下载数据集
 
 ```bash
-python3 src/install_datasets.py
+python src/install_datasets.py
 ```
 
 脚本按顺序下载八个数据集，保存到项目根目录下的 `datasets/`。仅下载部分作业时，注释其他作业对应的代码块。脚本默认使用已经配置的 Kaggle 凭据，不会每次提示登录。
