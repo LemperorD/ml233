@@ -6,7 +6,7 @@
 
 ## 数据与读取
 
-- 目录：`datasets/ml-hw2-person/`，竞赛标识 `ml-hw1-person`。
+- 目录：`datasets/ml-hw2-person/`。
 - `train.csv` 为 912 行，包含 `id,label`；`test.csv` 为 608 行，仅有 `id`。
 - 图片分别在 `train_images/` 和 `test_images/`；`id` 已包含 `.jpg`，不要再次添加扩展名。
 - 图片均为 RGB，尺寸不统一。输出模板 `submission_example.csv` 有 608 行，列为 `id,label`。

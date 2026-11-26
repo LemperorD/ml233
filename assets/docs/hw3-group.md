@@ -68,3 +68,7 @@ loss = (((pred - safe_target) ** 2) * mask).sum() / mask.sum().clamp_min(1)
 2–3 人团队可由一人负责路径、掩码与验证，一人负责 CNN 和增强；第三人（如有）负责热图对照、可视化与查表提交，报告由全员核对。报告包含均值与 CNN 对照、完整与稀疏点误差、人脸上叠加真实点与预测点，以及翻转前后的可视化检查。
 
 依据：[训练 CSV](../../datasets/ml-hw3-group/train.csv)、[点名映射](../../datasets/ml-hw3-group/keypoints.csv)、[提交查找表](../../datasets/ml-hw3-group/IdLookupTable.csv) 和 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/face-buaa) 用于核实补充规则；像素单位和 RMSE 已由 PDF 明确；模型路线是根据本地标注结构提出的方案。
+
+## 代码实现
+
+[训练、评估与结果查看](../../src/hw3_group/README.md)。

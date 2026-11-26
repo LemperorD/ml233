@@ -44,3 +44,7 @@
 ## 来源与规则入口
 
 数据依据：[训练 CSV](../../datasets/ml-hw4-person/train.csv)、[模板](../../datasets/ml-hw4-person/sample_submission.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/character) 用于核实补充规则；Accuracy 依据上述 PDF；验证与泄漏处理参考[总览](README.md#方法参考)。
+
+## 代码实现
+
+[训练、评估与结果查看](../../src/hw4_person/README.md)。

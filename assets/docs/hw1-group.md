@@ -44,3 +44,7 @@ PDF 明确课程主指标为 RMSLE，定义为 `sqrt(mean((log1p(pred)-log1p(tru
 ## 来源与规则入口
 
 数据依据：[训练 CSV](../../datasets/ml-hw1-group/train.csv)、[测试 CSV](../../datasets/ml-hw1-group/test.csv)、[模板](../../datasets/ml-hw1-group/submission_example.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/ml-hw1-group) 用于核实补充规则；RMSLE 依据上述 PDF；验证方法参考[总览](README.md#方法参考)。
+
+## 代码实现
+
+[训练、评估与结果查看](../../src/hw1_group/README.md)。

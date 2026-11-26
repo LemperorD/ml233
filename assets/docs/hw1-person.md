@@ -6,7 +6,7 @@
 
 ## 数据与风险
 
-目录为 `datasets/ml-hw1-person/`，对应竞赛标识 `ml-hw2-personal`，注意本地目录与竞赛名称并不完全相同。训练集 1119 行，测试集 480 行，无空字段。
+目录为 `datasets/ml-hw1-person/`。训练集 1119 行，测试集 480 行，无空字段。
 
 输入为 `fixed acidity`、`volatile acidity`、`citric acid`、`residual sugar`、`chlorides`、`free sulfur dioxide`、`total sulfur dioxide`、`density`、`pH`、`sulphates`、`alcohol`；`id` 仅用于对齐，`quality` 是目标。训练质量分布为 `3:4`、`4:37`、`5:484`、`6:436`、`7:145`、`8:13`。
 

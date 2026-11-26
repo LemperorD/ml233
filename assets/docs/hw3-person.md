@@ -48,3 +48,7 @@
 数据依据：[训练 CSV](../../datasets/ml-hw3-person/train.csv)、[模板](../../datasets/ml-hw3-person/sample_submission.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/bagprice) 用于核实外部数据等补充规则；RMSE 已由 PDF 明确。
 
 [CatBoost 类别特征文档](https://catboost.ai/docs/en/features/categorical-features) 说明模型的类别输入处理方式；本文的特征和参数是针对本地字段制定的实验起点。
+
+## 代码实现
+
+[训练、评估与结果查看](../../src/hw3_person/README.md)。

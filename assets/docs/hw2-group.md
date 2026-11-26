@@ -44,3 +44,7 @@
 数据依据：[训练 CSV](../../datasets/ml-hw2-group/train.csv)、[模板](../../datasets/ml-hw2-group/submission_example.csv) 和 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/ml-hw2-group) 用于核实补充规则；三类概率与 Log Loss 依据上述 PDF。
 
 [scikit-learn 文本特征文档](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction) 提供 TF-IDF 和稀疏特征的实现说明。
+
+## 代码实现
+
+[训练、评估与结果查看](../../src/hw2_group/README.md)。

@@ -69,3 +69,7 @@ with open("submission.csv", "w", newline="") as output:
 2–3 人团队可由一人负责文档分组、传统基线与导出，一人负责成对训练和整图推理；第三人（如有）负责消融、误差可视化和大文件校验，报告由全员核对。报告重点解释分组验证为什么必要、文字笔画是否保留、两类退化的指标，以及大文件如何校验。
 
 依据：[训练 manifest](../../datasets/ml-hw4-group/train_manifest.csv)、[测试 manifest](../../datasets/ml-hw4-group/test_manifest.csv)、本地成对图片与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/document-buaa) 用于核实补充规则；全像素 RMSE 和 [0,1] 尺度依据上述 PDF；[scikit-image 非局部均值示例](https://scikit-image.org/docs/stable/auto_examples/filters/plot_nonlocal_means.html) 可用于传统基线。U-Net、采样和导出路线是针对本地文件结构制定的实现建议。
+
+## 代码实现
+
+[训练、评估与结果查看](../../src/hw4_group/README.md)。
