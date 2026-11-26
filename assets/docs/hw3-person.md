@@ -1,4 +1,6 @@
-# 个人作业三 背包价格回归方法指导
+# 个人作业第 3 题：背包价格预测方法指导
+
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 6 页；[课程邀请入口](https://www.kaggle.com/t/dc007525d6eb44f181d6df7188ad973d) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 根据品牌、材质、尺寸和容量等属性预测 `Price`。本任务训练量大、类别字段多且存在缺失，先用均值与线性模型建立对照，再使用能处理类别特征的梯度提升模型。
 
@@ -16,7 +18,7 @@
 
 类别缺失填为固定字符串 `__MISSING__`；CatBoost 的类别输入统一转为字符串，并指定类别列。数值缺失可用训练折中位数填充并添加缺失指示。线性模型使用 OneHotEncoder，设定未知类别的处理；数值标准化在训练折拟合。
 
-本地先记录 RMSE 与 MAE，官方指标另行确认。默认先优化原始价格的 RMSE；只有验证显示改进，才使用 `log1p(Price)`，并在还原价格后重新计算原尺度指标。对数误差小不代表价格 RMSE 一定小。
+课程明确使用原始价格尺度的 RMSE，作为模型选择指标，MAE 仅作辅助诊断。优化原始价格的 RMSE；只有验证显示改进，才使用 `log1p(Price)`，并在还原价格后重新计算原尺度指标。对数误差小不代表价格 RMSE 一定小。
 
 ## 基线与增强路线
 
@@ -37,12 +39,12 @@
 
 ## 提交与报告
 
-按模板 ID 填入连续 `Price`，60000 行，不擅自四舍五入为整数。检查负预测，若采用截断，应先验证对指标的影响。保存特征列表、类别处理规则、最佳迭代轮数和环境版本。
+按模板 ID 填入连续 `Price` 并保存为 `submission.csv`，60000 行，不擅自四舍五入为整数。检查负预测，若采用截断，应先验证对指标的影响。保存特征列表、类别处理规则、最佳迭代轮数和环境版本。
 
 报告展示均值、Ridge、类别提升模型以及至少一项特征消融，解释模型在哪些价格或品牌区间失败。没有实际训练前，不填写预期分数或声称某模型一定最好。
 
 ## 来源与规则入口
 
-数据依据：[训练 CSV](../../datasets/ml-hw3-person/train.csv)、[模板](../../datasets/ml-hw3-person/sample_submission.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/bagprice) 用于确认指标与外部数据规则。
+数据依据：[训练 CSV](../../datasets/ml-hw3-person/train.csv)、[模板](../../datasets/ml-hw3-person/sample_submission.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/bagprice) 用于核实外部数据等补充规则；RMSE 已由 PDF 明确。
 
 [CatBoost 类别特征文档](https://catboost.ai/docs/en/features/categorical-features) 说明模型的类别输入处理方式；本文的特征和参数是针对本地字段制定的实验起点。

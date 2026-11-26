@@ -1,4 +1,6 @@
-# 小组作业四 文档图像去噪方法指导
+# 团队作业第 4 题：扫描文档去噪修复方法指导
+
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 12 页；[课程邀请入口](https://www.kaggle.com/t/9c328b32c87e4ac7a1a28debea957fff) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 把受噪声和背景干扰的灰度文档恢复成干净灰度图。目标图片含完整的 0 至 255 灰度值，因此先按连续像素回归实现；不要默认转成黑白二值分割。重点是原文档分组验证、成对训练和大规模像素提交。
 
@@ -14,7 +16,7 @@ manifest 字段为 `image_id,height,width,variant`。训练包含 116 个文档�
 
 从 `image_id` 去掉末尾 `_original` 或 `_mixed`，得到基础文档 ID；以它为组，留出约 20% 文档，或用 GroupKFold。必须先分文档，再裁训练块。若先裁块随机划分，会把同页字体、文字内容和背景泄漏到验证集。
 
-本地在归一化到 0 至 1 的灰度上计算全像素 RMSE、MAE，附 PSNR 和视觉对比。官方像素尺度和指标需确认。RMSE 汇总时累计整批文档误差平方和与像素数量，再开方，避免短页与长页不恰当地等权。分别报告 original 和 mixed 的效果。
+课程明确在 [0,1] 灰度上对全部测试像素计算 RMSE。验证同样用归一化灰度的全像素 RMSE 选模，MAE、PSNR 和视觉对比作辅助诊断。RMSE 汇总时累计整批文档误差平方和与像素数量，再开方，避免短页与长页不恰当地等权。分别报告 original 和 mixed 的效果。
 
 ## 传统基线
 
@@ -26,7 +28,7 @@ manifest 字段为 `image_id,height,width,variant`。训练包含 116 个文档�
 
 ## 小型 U-Net 方案
 
-用单通道输入与单通道输出的小型 U-Net，先采用 MSE 损失以匹配像素误差；也可比较残差学习，让网络预测噪声再从输入中扣除。训练前将输入和目标统一除以 255。最终输出限定在 0 至 1；若官方另有尺度，提交时统一转换。
+用单通道输入与单通道输出的小型 U-Net，先采用 MSE 损失以匹配像素误差；也可比较残差学习，让网络预测噪声再从输入中扣除。训练前将输入和目标统一除以 255。最终输出限定在课程明确的 [0,1]，不导出 0 至 255 的整数灰度。
 
 初始可用 128 × 128 或 256 × 256 图块、批量 8 至 16、Adam 和约 `1e-3` 学习率，再按验证指标早停。这些是待实验的起始配置。采样同时覆盖文字密集区和背景，防止模型仅学会输出白底。
 
@@ -60,10 +62,10 @@ with open("submission.csv", "w", newline="") as output:
         first = False
 ```
 
-`rsplit("_",2)` 很关键，图像 ID 自身含下划线。上例是清晰的导出骨架，速度不足时按块向量化索引；不要一次构造一千多万个 Python 字典或读取整个模板到内存。检查输出行数、首末 ID、全部 ID 顺序、有限值与像素范围，确认没有转置或把 1 基坐标误作 0 基坐标。不能仅凭模板示例值为 1 就断言官方像素尺度，应核对 Evaluation。
+`rsplit("_",2)` 很关键，图像 ID 自身含下划线。上例是清晰的导出骨架，速度不足时按块向量化索引；不要一次构造一千多万个 Python 字典或读取整个模板到内存。检查输出行数、首末 ID、全部 ID 顺序、有限值与像素范围，确认没有转置或把 1 基坐标误作 0 基坐标。灰度 [0,1] 依据 PDF 第 12 页，不能写成 0 至 255 或仅凭模板默认值生成预测。
 
 ## 小组交付与来源
 
-建议分别负责文档分组与传统基线、成对图块与 U-Net、整图推理与误差可视化、流式导出与报告。报告重点解释分组验证为什么必要、文字笔画是否保留、两类退化的指标，以及大文件如何校验。
+2–3 人团队可由一人负责文档分组、传统基线与导出，一人负责成对训练和整图推理；第三人（如有）负责消融、误差可视化和大文件校验，报告由全员核对。报告重点解释分组验证为什么必要、文字笔画是否保留、两类退化的指标，以及大文件如何校验。
 
-依据：[训练 manifest](../../datasets/ml-hw4-group/train_manifest.csv)、[测试 manifest](../../datasets/ml-hw4-group/test_manifest.csv)、本地成对图片与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/document-buaa) 用于确认尺度与规则；[scikit-image 非局部均值示例](https://scikit-image.org/docs/stable/auto_examples/filters/plot_nonlocal_means.html) 可用于传统基线。U-Net、采样和导出路线是针对本地文件结构制定的实现建议。
+依据：[训练 manifest](../../datasets/ml-hw4-group/train_manifest.csv)、[测试 manifest](../../datasets/ml-hw4-group/test_manifest.csv)、本地成对图片与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/document-buaa) 用于核实补充规则；全像素 RMSE 和 [0,1] 尺度依据上述 PDF；[scikit-image 非局部均值示例](https://scikit-image.org/docs/stable/auto_examples/filters/plot_nonlocal_means.html) 可用于传统基线。U-Net、采样和导出路线是针对本地文件结构制定的实现建议。

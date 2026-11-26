@@ -1,4 +1,6 @@
-# 小组作业二 英文文本作者识别方法指导
+# 团队作业第 2 题：作家风格识别方法指导
+
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 10 页；[课程邀请入口](https://www.kaggle.com/t/d90b8c130a7742279f862eb605c7f64f) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 根据英文文本判断作者属于 `EAP`、`HPL`、`MWS` 三类，并输出每一类的概率。先用词和字符 TF-IDF 配合线性模型，建立速度快、便于解释的基线，再考虑更复杂模型。
 
@@ -12,7 +14,7 @@
 
 先以作者标签进行 80% 与 20% 的分层划分，再做五折 StratifiedKFold。当前没有完全相同的训练文本，但可对归一化后的重复句、相似引文进一步检查；若识别出同来源段落，按来源分组进行额外验证。
 
-本地重点监控多分类 LogLoss，同时记录 Accuracy 和混淆矩阵。LogLoss 为真实类别预测概率负对数的均值，过度自信的错误会受到较大惩罚；官方主指标仍需核实。词表、词频和 IDF 只能在训练折拟合，不能把训练与测试拼接后拟合向量器。
+课程主指标为多分类 Log Loss，以它选择模型，同时记录 Accuracy 和混淆矩阵。LogLoss 为真实类别预测概率负对数的均值，过度自信的错误会受到较大惩罚。词表、词频和 IDF 只能在训练折拟合，不能把训练与测试拼接后拟合向量器。
 
 ## 最小基线
 
@@ -35,10 +37,10 @@
 
 模型的 `classes_` 顺序不应靠猜测。用类名找到对应概率列后填入模板，保证 4895 行、ID 顺序正确、每行概率和约等于 1、所有值有限且位于 0 至 1。仅为数值稳定进行微小裁剪时，裁剪后再次归一化。
 
-分工可分别负责词特征、字符与风格特征、神经模型或概率校准、验证与报告。共用折划分，保存折外三类概率，便于公平融合。报告包含特征消融、各作者召回率、概率质量及典型误判句子。
+最终保存为 `submission.csv`。2–3 人团队可由一人负责词/字符特征，一人负责验证、校准与提交；第三人（如有）负责风格特征或神经模型和误差分析，全员共同整理报告。共用折划分，保存折外三类概率，便于公平融合。报告包含特征消融、各作者召回率、概率质量及典型误判句子。
 
 ## 来源与规则入口
 
-数据依据：[训练 CSV](../../datasets/ml-hw2-group/train.csv)、[模板](../../datasets/ml-hw2-group/submission_example.csv) 和 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/ml-hw2-group) 用于核对概率评分规则。
+数据依据：[训练 CSV](../../datasets/ml-hw2-group/train.csv)、[模板](../../datasets/ml-hw2-group/submission_example.csv) 和 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/ml-hw2-group) 用于核实补充规则；三类概率与 Log Loss 依据上述 PDF。
 
 [scikit-learn 文本特征文档](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction) 提供 TF-IDF 和稀疏特征的实现说明。

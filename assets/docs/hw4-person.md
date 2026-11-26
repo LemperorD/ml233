@@ -1,4 +1,6 @@
-# 个人作业四 内外向分类方法指导
+# 个人作业第 4 题：内向／外向性格分类方法指导
+
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 7 页；[课程邀请入口](https://www.kaggle.com/t/f9ddc5dbc15947fb82992d009d51492e) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 利用七项行为属性预测 `Extrovert` 或 `Introvert`。主要难点是类别不平衡和多列缺失，先验证缺失处理与简单分类器，再比较树模型和阈值调整。
 
@@ -14,7 +16,7 @@
 
 使用固定种子的五折 StratifiedKFold，或先分层留出 20% 跑通流程。全部清洗参数仅从训练折学习。先确认是否存在近重复行为组合；若后续数据发现重复人群记录，应按重复组隔离。
 
-本地同时记录 Accuracy、Macro-F1、两类召回率和混淆矩阵，官方主指标需到 Evaluation 确认。不能根据类别不平衡就直接把类别权重设为 balanced：它可能改善少数类召回，也可能降低官方关注的 Accuracy，应在同一划分比较。
+课程主指标已明确为 Accuracy，用它选择模型；Macro-F1、两类召回率和混淆矩阵用于辅助诊断。不能根据类别不平衡就直接把类别权重设为 balanced：它可能改善少数类召回，也可能降低官方关注的 Accuracy，应在同一划分比较。
 
 ## 最小基线
 
@@ -29,16 +31,16 @@
 
 比较 CatBoostClassifier 或其他梯度提升树，保留类别缺失信息；从浅树和早停开始。加入“缺失字段数”、独处时间与社交后疲惫的交互等特征，检查在各折是否稳定获益。
 
-若官方指标是 Accuracy，可先以 0.5 阈值为基准，再用折外预测选择阈值；若是 F1，应按指定正类和官方定义选阈值；若是 LogLoss，则提交概率并优化概率质量。当前模板是字符串标签，因此最终提交列不能直接写概率，除非官方另有明确说明。
+按 Accuracy 选模：先以 0.5 阈值为基准，再用折外预测选择能提高准确率的阈值。最终提交为字符串标签 `Extrovert` 或 `Introvert`，不能把内部预测概率直接写入提交列。
 
 阈值选择和模型比较共用折外预测时，最终改进幅度还应在未参与选择的留出集或额外划分上复核。报告查看全部字段完整与缺失较多两组的性能，判断模型是否过度依赖缺失模式。
 
 ## 提交与报告
 
-模板 `sample_submission.csv` 为 3705 行，列名严格使用 `id,Personality`。按 ID 对齐，只写 `Extrovert` 与 `Introvert`。检查预测类别比例显著偏离训练时的原因，不能仅为了匹配比例而强行更改预测。
+模板 `sample_submission.csv` 为 3705 行，列名严格使用 `id,Personality`。最终保存为 `submission.csv`，按 ID 对齐，只写 `Extrovert` 与 `Introvert`。检查预测类别比例显著偏离训练时的原因，不能仅为了匹配比例而强行更改预测。
 
 报告给出多数类基线、逻辑回归、树模型、缺失指示与类别权重消融。讨论错误的行为组合时，围绕此数据集的预测关系，不把模型结果扩展成对真实人格的确定判断。
 
 ## 来源与规则入口
 
-数据依据：[训练 CSV](../../datasets/ml-hw4-person/train.csv)、[模板](../../datasets/ml-hw4-person/sample_submission.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/character) 用于确认主指标；验证与泄漏处理参考[总览](README.md#方法参考)。
+数据依据：[训练 CSV](../../datasets/ml-hw4-person/train.csv)、[模板](../../datasets/ml-hw4-person/sample_submission.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/character) 用于核实补充规则；Accuracy 依据上述 PDF；验证与泄漏处理参考[总览](README.md#方法参考)。

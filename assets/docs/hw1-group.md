@@ -1,4 +1,6 @@
-# 小组作业一 共享单车需求预测方法指导
+# 团队作业第 1 题：共享单车租赁需求预测方法指导
+
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 9 页；[课程邀请入口](https://www.kaggle.com/t/62a455cadb0246318935d0db3c9a6349) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 根据时间、天气和温度预测每小时租车总量 `count`。重点是模拟测试集的时间分布，并排除只存在于训练集的目标组成项。
 
@@ -14,9 +16,9 @@
 
 主验证可在每个月用 1 至 11 日训练、12 至 15 日验证，模拟月内日期向后的分布变化。按日期整体划分，不能把同一天的不同时刻随机拆到两边。再使用连续月份向前滚动的验证检查趋势外推能力；两种验证分别反映月内插补式预测和未来预测，不混成一个分数。
 
-本地同时记录 RMSE 与 RMSLE。RMSLE 定义为 `sqrt(mean((log1p(pred)-log1p(true))^2))`，预测需非负。官方指标未核实，不能直接沿用其他同名单车竞赛的指标。
+PDF 明确课程主指标为 RMSLE，定义为 `sqrt(mean((log1p(pred)-log1p(true))^2))`，预测需非负。以 RMSLE 选择模型，原始计数 RMSE 仅作高峰绝对误差的辅助诊断。
 
-若确认用 RMSLE，训练 `log1p(count)` 是自然起点，还原时使用 `expm1` 并将小于零的预测截为零。若用 RMSE，则比较原始计数目标与对数目标，以还原后的实际指标选择。最终输出通常保留非负连续值，不默认取整。
+训练 `log1p(count)`，以对数目标上的 MSE 作为起点；预测时使用 `expm1` 还原并将小于零的值截为零，再计算 RMSLE。可与原始计数目标训练作消融，但统一按 RMSLE 选择。最终输出保留非负连续值，不默认取整。
 
 ## 特征与基线
 
@@ -35,10 +37,10 @@
 
 ## 小组实施与提交
 
-分工建议：一人维护时间划分与基线，一人做时间和天气特征，一人比较直接总量与分项模型，一人负责误差图和提交检查。共用相同的训练验证日期清单。
+团队为 2–3 人：可由一人维护时间划分、基线与提交，一人负责时间天气特征与模型；第三人（如有）负责分项模型、误差图与消融，报告由全员核对。共用相同的训练验证日期清单。
 
-输出 `submission_example.csv`，2286 行，列为 `datetime,count`，时间字符串与模板一致。禁止导出训练集专有字段。报告给出小时需求曲线、时间划分示意、原始与对数目标对照，以及高峰误差分析。
+以 `submission_example.csv` 为模板输出 `submission.csv`，2286 行，列为 `datetime,count`，时间字符串与模板一致。禁止导出训练集专有字段。报告给出小时需求曲线、时间划分示意、原始与对数目标对照，以及高峰误差分析。
 
 ## 来源与规则入口
 
-数据依据：[训练 CSV](../../datasets/ml-hw1-group/train.csv)、[测试 CSV](../../datasets/ml-hw1-group/test.csv)、[模板](../../datasets/ml-hw1-group/submission_example.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/ml-hw1-group) 用于确认 RMSE 或 RMSLE；验证方法参考[总览](README.md#方法参考)。
+数据依据：[训练 CSV](../../datasets/ml-hw1-group/train.csv)、[测试 CSV](../../datasets/ml-hw1-group/test.csv)、[模板](../../datasets/ml-hw1-group/submission_example.csv) 与 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/ml-hw1-group) 用于核实补充规则；RMSLE 依据上述 PDF；验证方法参考[总览](README.md#方法参考)。

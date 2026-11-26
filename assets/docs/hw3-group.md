@@ -1,4 +1,6 @@
-# 小组作业三 人脸关键点定位方法指导
+# 团队作业第 3 题：人脸关键点定位方法指导
+
+课程依据：[作业说明 PDF](2026研究生机器学习大作业说明.pdf) 第 11 页；[课程邀请入口](https://www.kaggle.com/t/b0527b03a6c0427eb161c02afb8ba528) 来自 PDF 第 13 页。个人与团队各四选一；报告、截止时间及打包要求统一见[总览](README.md)。
 
 从灰度人脸图像预测十五个关键点的横纵坐标。重点是正确处理缺失标签、图像路径、几何增强和最终查表提交。先做坐标均值基线，再训练带标签掩码的小型 CNN。
 
@@ -29,7 +31,7 @@ def resolve_image(relative_path):
 
 先检查完全相同或近重复人脸，按重复组隔离。再固定约 20% 验证，并尽量平衡完整标注与稀疏标注样本的比例。没有人物身份信息时，不声称已经完成身份级隔离。
 
-本地在有效坐标上计算像素 RMSE，同时记录各关键点误差和标注数量。先核实官方指标及坐标尺度。验证集缺失模式可能影响总体分数，应额外分别报告常见点与稀疏点的结果。
+课程明确对查找表内全部待预测坐标按原图像素单位计算 RMSE。本地在验证集有效坐标上累计计算像素 RMSE，以它选择模型，同时记录各关键点误差和标注数量。验证集缺失模式可能影响总体分数，应额外分别报告常见点与稀疏点的结果。
 
 ## 坐标与损失
 
@@ -59,10 +61,10 @@ loss = (((pred - safe_target) ** 2) * mask).sum() / mask.sum().clamp_min(1)
 
 `IdLookupTable.csv` 有 21012 行，字段 `RowId,ImageId,FeatureName`；模板为 `sample_submission.csv`，字段 `RowId,Location`。它不是每张图固定提交全部 30 个坐标，不能直接把 1410 × 30 的预测展平。
 
-先生成 `predictions[ImageId][FeatureName]`，再按查找表逐行提取相应值，最后按模板 `RowId` 对齐。检查所有图片和字段都能匹配，没有缺失或无穷值，坐标已从归一化尺度还原为原图像素。仅在确认官方边界后决定是否截断坐标。
+最终文件命名为 `submission.csv`。先生成 `predictions[ImageId][FeatureName]`，再按查找表逐行提取相应值，最后按模板 `RowId` 对齐。检查所有图片和字段都能匹配，没有缺失或无穷值，坐标已从归一化尺度还原为原图像素。仅在确认官方边界后决定是否截断坐标。
 
 ## 小组交付与来源
 
-建议分别负责路径与标签掩码、CNN 与热图实验、增强与可视化、提交查表。报告包含均值与 CNN 对照、完整与稀疏点误差、人脸上叠加真实点与预测点，以及翻转前后的可视化检查。
+2–3 人团队可由一人负责路径、掩码与验证，一人负责 CNN 和增强；第三人（如有）负责热图对照、可视化与查表提交，报告由全员核对。报告包含均值与 CNN 对照、完整与稀疏点误差、人脸上叠加真实点与预测点，以及翻转前后的可视化检查。
 
-依据：[训练 CSV](../../datasets/ml-hw3-group/train.csv)、[点名映射](../../datasets/ml-hw3-group/keypoints.csv)、[提交查找表](../../datasets/ml-hw3-group/IdLookupTable.csv) 和 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/face-buaa) 用于核对坐标和评分规则；模型路线是根据本地标注结构提出的方案。
+依据：[训练 CSV](../../datasets/ml-hw3-group/train.csv)、[点名映射](../../datasets/ml-hw3-group/keypoints.csv)、[提交查找表](../../datasets/ml-hw3-group/IdLookupTable.csv) 和 [统计快照](data_profile.json)。[竞赛页面](https://www.kaggle.com/competitions/face-buaa) 用于核实补充规则；像素单位和 RMSE 已由 PDF 明确；模型路线是根据本地标注结构提出的方案。
