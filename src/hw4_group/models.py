@@ -16,6 +16,9 @@ class SmallUNet(nn.Module):
         self.center = block(32, 64)
         self.dec2, self.dec1 = block(96, 32), block(48, 16)
         self.output = nn.Conv2d(16, 1, 1)
+        # 从恒等恢复起步，让网络学习灰度修正，避免先把文字抹成白底。
+        nn.init.zeros_(self.output.weight)
+        nn.init.zeros_(self.output.bias)
 
     def forward(self, x):
         height, width = x.shape[-2:]
@@ -25,4 +28,4 @@ class SmallUNet(nn.Module):
         c = self.center(F.max_pool2d(b, 2))
         d = self.dec2(torch.cat([F.interpolate(c, size=b.shape[-2:], mode='bilinear', align_corners=False), b], dim=1))
         e = self.dec1(torch.cat([F.interpolate(d, size=a.shape[-2:], mode='bilinear', align_corners=False), a], dim=1))
-        return self.output(e).sigmoid()[..., :height, :width]
+        return (x + self.output(e)).clamp(0, 1)[..., :height, :width]

@@ -17,7 +17,7 @@ python -m src.hw4_group.predict --run-dir outputs/hw4_group/baseline
 
 original/mixed 的同文档变体绑定为组，约 20% 文档验证。先分组再裁块；输入与目标使用相同随机裁剪。
 
-输入输出均在 [0,1]；训练图块，验证和预测整图，自动填充再裁回原尺寸。按验证 RMSE 早停，再按最佳轮数全量重训。训练显存不足时降低 batch-size 或 patch-size；整图推理超出显存时可使用 --device cpu。
+输入输出均在 [0,1]，网络预测残差修正，零初始化输出头使初始恢复等于输入；训练图块，验证和预测整图，自动填充再裁回原尺寸。按验证 RMSE 早停，再按最佳轮数全量重训。训练显存不足时降低 batch-size 或 patch-size；整图推理超出显存时可使用 --device cpu。
 
 各入口支持 `--data-dir`、`--device auto/cpu/cuda` 和 `--threads`。每次实验使用新的 `--output-dir`，程序拒绝覆盖非空实验目录。模型代码在 `models.py`，数据在 `data.py`，训练、评估、预测各有独立入口；只在本作业内复用。
 

@@ -208,6 +208,17 @@ class RemainingAssignmentsTests(unittest.TestCase):
         self.assertFalse((run / 'bad.csv').exists())
         self.assertFalse((run / 'bad.csv.part').exists())
 
+    def test_unet_starts_from_identity_and_preserves_shape(self):
+        from src.hw4_group.models import SmallUNet
+        model = SmallUNet()
+        inputs = torch.rand(2, 1, 17, 19)
+        outputs = model(inputs)
+        self.assertEqual(outputs.shape, inputs.shape)
+        torch.testing.assert_close(outputs, inputs, rtol=0, atol=0)
+        ((outputs - inputs * 0.9) ** 2).mean().backward()
+        self.assertTrue(torch.isfinite(model.output.weight.grad).all())
+        self.assertGreater(float(model.output.weight.grad.abs().sum()), 0)
+
     def test_numbering_matches_data_directories(self):
         for number in range(1, 5):
             for kind in ['person', 'group']:
