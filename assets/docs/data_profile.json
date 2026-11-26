@@ -1,0 +1,589 @@
+{
+  "snapshot_date": "2026-11-26",
+  "datasets": {
+    "ml-hw1-group": {
+      "csv": {
+        "submission_example.csv": {
+          "rows": 2286,
+          "columns": [
+            "datetime",
+            "count"
+          ],
+          "missing": {}
+        },
+        "test.csv": {
+          "rows": 2286,
+          "columns": [
+            "datetime",
+            "season",
+            "holiday",
+            "workingday",
+            "weather",
+            "temp",
+            "atemp",
+            "humidity",
+            "windspeed"
+          ],
+          "missing": {}
+        },
+        "train.csv": {
+          "rows": 8600,
+          "columns": [
+            "datetime",
+            "season",
+            "holiday",
+            "workingday",
+            "weather",
+            "temp",
+            "atemp",
+            "humidity",
+            "windspeed",
+            "casual",
+            "registered",
+            "count"
+          ],
+          "missing": {}
+        }
+      },
+      "images_by_directory": {},
+      "image_sizes": {}
+    },
+    "ml-hw1-person": {
+      "csv": {
+        "submission_example.csv": {
+          "rows": 608,
+          "columns": [
+            "id",
+            "label"
+          ],
+          "missing": {}
+        },
+        "test.csv": {
+          "rows": 608,
+          "columns": [
+            "id"
+          ],
+          "missing": {}
+        },
+        "train.csv": {
+          "rows": 912,
+          "columns": [
+            "id",
+            "label"
+          ],
+          "missing": {},
+          "target_counts": {
+            "shawarma": 98,
+            "burger": 95,
+            "hot_dog": 99,
+            "crepes": 99,
+            "tacos": 97,
+            "pani_puri": 94,
+            "churros": 99,
+            "falafel": 81,
+            "pad_thai": 68,
+            "pretzel": 82
+          }
+        }
+      },
+      "images_by_directory": {
+        "test_images": 608,
+        "train_images": 912
+      },
+      "image_sizes": {
+        "162x107 RGB": 6,
+        "162x91 RGB": 110,
+        "93x140 RGB": 296,
+        "105x140 RGB": 51,
+        "162x121 RGB": 121,
+        "140x140 RGB": 377,
+        "162x108 RGB": 196,
+        "162x81 RGB": 5,
+        "162x94 RGB": 1,
+        "96x140 RGB": 8,
+        "121x140 RGB": 5,
+        "112x140 RGB": 42,
+        "162x54 RGB": 1,
+        "100x140 RGB": 16,
+        "113x140 RGB": 3,
+        "162x105 RGB": 3,
+        "162x134 RGB": 3,
+        "160x140 RGB": 2,
+        "99x140 RGB": 10,
+        "162x127 RGB": 5,
+        "132x140 RGB": 1,
+        "162x79 RGB": 4,
+        "154x140 RGB": 11,
+        "106x140 RGB": 2,
+        "108x140 RGB": 7,
+        "162x74 RGB": 2,
+        "78x140 RGB": 7,
+        "131x140 RGB": 1,
+        "162x126 RGB": 5,
+        "162x113 RGB": 1,
+        "162x101 RGB": 4,
+        "97x140 RGB": 1,
+        "104x140 RGB": 8,
+        "156x140 RGB": 1,
+        "162x131 RGB": 2,
+        "139x140 RGB": 3,
+        "162x106 RGB": 6,
+        "162x117 RGB": 2,
+        "141x140 RGB": 5,
+        "103x140 RGB": 4,
+        "94x140 RGB": 5,
+        "162x120 RGB": 4,
+        "101x140 RGB": 3,
+        "162x95 RGB": 6,
+        "162x118 RGB": 3,
+        "95x140 RGB": 2,
+        "162x109 RGB": 6,
+        "162x135 RGB": 3,
+        "162x102 RGB": 2,
+        "162x85 RGB": 10,
+        "117x140 RGB": 4,
+        "162x111 RGB": 1,
+        "162x104 RGB": 3,
+        "162x122 RGB": 5,
+        "88x140 RGB": 2,
+        "162x87 RGB": 2,
+        "162x133 RGB": 11,
+        "162x130 RGB": 6,
+        "159x140 RGB": 1,
+        "162x116 RGB": 5,
+        "107x140 RGB": 1,
+        "147x140 RGB": 2,
+        "162x63 RGB": 1,
+        "151x140 RGB": 5,
+        "162x88 RGB": 1,
+        "162x112 RGB": 3,
+        "162x99 RGB": 2,
+        "162x73 RGB": 2,
+        "162x77 RGB": 1,
+        "162x97 RGB": 1,
+        "162x98 RGB": 2,
+        "120x140 RGB": 3,
+        "81x140 RGB": 1,
+        "118x140 RGB": 2,
+        "162x129 RGB": 3,
+        "162x93 RGB": 1,
+        "162x125 RGB": 3,
+        "146x140 RGB": 2,
+        "162x137 RGB": 1,
+        "162x114 RGB": 1,
+        "162x103 RGB": 2,
+        "136x140 RGB": 1,
+        "162x110 RGB": 6,
+        "92x140 RGB": 3,
+        "129x140 RGB": 2,
+        "162x84 RGB": 3,
+        "150x140 RGB": 1,
+        "110x140 RGB": 3,
+        "162x132 RGB": 1,
+        "162x71 RGB": 2,
+        "162x90 RGB": 4,
+        "91x140 RGB": 3,
+        "162x115 RGB": 3,
+        "79x140 RGB": 1,
+        "114x140 RGB": 4,
+        "89x140 RGB": 1,
+        "123x140 RGB": 1,
+        "125x140 RGB": 1,
+        "124x140 RGB": 2,
+        "119x140 RGB": 1,
+        "162x50 RGB": 1,
+        "138x140 RGB": 1,
+        "162x119 RGB": 2,
+        "127x140 RGB": 1,
+        "111x140 RGB": 2,
+        "133x140 RGB": 1,
+        "115x140 RGB": 1,
+        "130x140 RGB": 1,
+        "162x139 RGB": 1,
+        "116x140 RGB": 1,
+        "162x100 RGB": 1,
+        "157x140 RGB": 1,
+        "162x89 RGB": 1
+      }
+    },
+    "ml-hw2-group": {
+      "csv": {
+        "submission_example.csv": {
+          "rows": 4895,
+          "columns": [
+            "id",
+            "EAP",
+            "HPL",
+            "MWS"
+          ],
+          "missing": {}
+        },
+        "test.csv": {
+          "rows": 4895,
+          "columns": [
+            "id",
+            "text"
+          ],
+          "missing": {}
+        },
+        "train.csv": {
+          "rows": 14684,
+          "columns": [
+            "id",
+            "text",
+            "author"
+          ],
+          "missing": {},
+          "target_counts": {
+            "EAP": 5925,
+            "MWS": 4533,
+            "HPL": 4226
+          }
+        }
+      },
+      "images_by_directory": {},
+      "image_sizes": {}
+    },
+    "ml-hw2-person": {
+      "csv": {
+        "submission_example.csv": {
+          "rows": 480,
+          "columns": [
+            "id",
+            "quality"
+          ],
+          "missing": {}
+        },
+        "test.csv": {
+          "rows": 480,
+          "columns": [
+            "id",
+            "fixed acidity",
+            "volatile acidity",
+            "citric acid",
+            "residual sugar",
+            "chlorides",
+            "free sulfur dioxide",
+            "total sulfur dioxide",
+            "density",
+            "pH",
+            "sulphates",
+            "alcohol"
+          ],
+          "missing": {}
+        },
+        "train.csv": {
+          "rows": 1119,
+          "columns": [
+            "id",
+            "fixed acidity",
+            "volatile acidity",
+            "citric acid",
+            "residual sugar",
+            "chlorides",
+            "free sulfur dioxide",
+            "total sulfur dioxide",
+            "density",
+            "pH",
+            "sulphates",
+            "alcohol",
+            "quality"
+          ],
+          "missing": {},
+          "target_counts": {
+            "5": 484,
+            "7": 145,
+            "4": 37,
+            "6": 436,
+            "8": 13,
+            "3": 4
+          }
+        }
+      },
+      "images_by_directory": {},
+      "image_sizes": {}
+    },
+    "ml-hw3-group": {
+      "csv": {
+        "IdLookupTable.csv": {
+          "rows": 21012,
+          "columns": [
+            "RowId",
+            "ImageId",
+            "FeatureName"
+          ],
+          "missing": {}
+        },
+        "keypoints.csv": {
+          "rows": 15,
+          "columns": [
+            "keypoint",
+            "中文名称",
+            "x_column",
+            "y_column"
+          ],
+          "missing": {}
+        },
+        "sample_submission.csv": {
+          "rows": 21012,
+          "columns": [
+            "RowId",
+            "Location"
+          ],
+          "missing": {}
+        },
+        "test.csv": {
+          "rows": 1410,
+          "columns": [
+            "ImageId",
+            "image_path"
+          ],
+          "missing": {}
+        },
+        "train.csv": {
+          "rows": 5639,
+          "columns": [
+            "ImageId",
+            "image_path",
+            "left_eye_center_x",
+            "left_eye_center_y",
+            "right_eye_center_x",
+            "right_eye_center_y",
+            "left_eye_inner_corner_x",
+            "left_eye_inner_corner_y",
+            "left_eye_outer_corner_x",
+            "left_eye_outer_corner_y",
+            "right_eye_inner_corner_x",
+            "right_eye_inner_corner_y",
+            "right_eye_outer_corner_x",
+            "right_eye_outer_corner_y",
+            "left_eyebrow_inner_end_x",
+            "left_eyebrow_inner_end_y",
+            "left_eyebrow_outer_end_x",
+            "left_eyebrow_outer_end_y",
+            "right_eyebrow_inner_end_x",
+            "right_eyebrow_inner_end_y",
+            "right_eyebrow_outer_end_x",
+            "right_eyebrow_outer_end_y",
+            "nose_tip_x",
+            "nose_tip_y",
+            "mouth_left_corner_x",
+            "mouth_left_corner_y",
+            "mouth_right_corner_x",
+            "mouth_right_corner_y",
+            "mouth_center_top_lip_x",
+            "mouth_center_top_lip_y",
+            "mouth_center_bottom_lip_x",
+            "mouth_center_bottom_lip_y"
+          ],
+          "missing": {
+            "left_eye_inner_corner_x": 3813,
+            "left_eye_inner_corner_y": 3813,
+            "left_eye_outer_corner_x": 3817,
+            "left_eye_outer_corner_y": 3817,
+            "right_eye_inner_corner_x": 3815,
+            "right_eye_inner_corner_y": 3815,
+            "right_eye_outer_corner_x": 3815,
+            "right_eye_outer_corner_y": 3815,
+            "left_eyebrow_inner_end_x": 3815,
+            "left_eyebrow_inner_end_y": 3815,
+            "left_eyebrow_outer_end_x": 3852,
+            "left_eyebrow_outer_end_y": 3852,
+            "right_eyebrow_inner_end_x": 3814,
+            "right_eyebrow_inner_end_y": 3814,
+            "right_eyebrow_outer_end_x": 3840,
+            "right_eyebrow_outer_end_y": 3840,
+            "mouth_left_corner_x": 3814,
+            "mouth_left_corner_y": 3814,
+            "mouth_right_corner_x": 3813,
+            "mouth_right_corner_y": 3813,
+            "mouth_center_top_lip_x": 3807,
+            "mouth_center_top_lip_y": 3807,
+            "mouth_center_bottom_lip_x": 26,
+            "mouth_center_bottom_lip_y": 26,
+            "right_eye_center_x": 12,
+            "right_eye_center_y": 12,
+            "left_eye_center_x": 9,
+            "left_eye_center_y": 9
+          }
+        }
+      },
+      "images_by_directory": {
+        "test_images/test_images": 1410,
+        "train_images/train_images": 5639
+      },
+      "image_sizes": {
+        "96x96 L": 7049
+      }
+    },
+    "ml-hw3-person": {
+      "csv": {
+        "sample_submission.csv": {
+          "rows": 60000,
+          "columns": [
+            "id",
+            "Price"
+          ],
+          "missing": {}
+        },
+        "test.csv": {
+          "rows": 60000,
+          "columns": [
+            "id",
+            "Brand",
+            "Material",
+            "Size",
+            "Compartments",
+            "Laptop Compartment",
+            "Waterproof",
+            "Style",
+            "Color",
+            "Weight Capacity (kg)"
+          ],
+          "missing": {
+            "Style": 1622,
+            "Size": 1357,
+            "Waterproof": 1381,
+            "Color": 2003,
+            "Brand": 1963,
+            "Laptop Compartment": 1485,
+            "Material": 1656,
+            "Weight Capacity (kg)": 28
+          }
+        },
+        "train.csv": {
+          "rows": 240000,
+          "columns": [
+            "id",
+            "Brand",
+            "Material",
+            "Size",
+            "Compartments",
+            "Laptop Compartment",
+            "Waterproof",
+            "Style",
+            "Color",
+            "Weight Capacity (kg)",
+            "Price"
+          ],
+          "missing": {
+            "Material": 6691,
+            "Color": 7947,
+            "Size": 5238,
+            "Brand": 7742,
+            "Laptop Compartment": 5959,
+            "Style": 6348,
+            "Waterproof": 5669,
+            "Weight Capacity (kg)": 110
+          }
+        }
+      },
+      "images_by_directory": {},
+      "image_sizes": {}
+    },
+    "ml-hw4-group": {
+      "csv": {
+        "sample_submission.csv": {
+          "rows": 11301120,
+          "columns": [
+            "id",
+            "value"
+          ],
+          "missing": {}
+        },
+        "test_manifest.csv": {
+          "rows": 56,
+          "columns": [
+            "image_id",
+            "height",
+            "width",
+            "variant"
+          ],
+          "missing": {}
+        },
+        "train_manifest.csv": {
+          "rows": 232,
+          "columns": [
+            "image_id",
+            "height",
+            "width",
+            "variant"
+          ],
+          "missing": {}
+        }
+      },
+      "images_by_directory": {
+        "train_clean": 232,
+        "train_noisy": 232,
+        "test_noisy": 56
+      },
+      "image_sizes": {
+        "540x420 L": 344,
+        "540x258 L": 176
+      }
+    },
+    "ml-hw4-person": {
+      "csv": {
+        "sample_submission.csv": {
+          "rows": 3705,
+          "columns": [
+            "id",
+            "Personality"
+          ],
+          "missing": {}
+        },
+        "test.csv": {
+          "rows": 3705,
+          "columns": [
+            "id",
+            "Time_spent_Alone",
+            "Stage_fear",
+            "Social_event_attendance",
+            "Going_outside",
+            "Drained_after_socializing",
+            "Friends_circle_size",
+            "Post_frequency"
+          ],
+          "missing": {
+            "Post_frequency": 258,
+            "Friends_circle_size": 225,
+            "Stage_fear": 387,
+            "Drained_after_socializing": 226,
+            "Social_event_attendance": 238,
+            "Going_outside": 287,
+            "Time_spent_Alone": 265
+          }
+        },
+        "train.csv": {
+          "rows": 14819,
+          "columns": [
+            "id",
+            "Time_spent_Alone",
+            "Stage_fear",
+            "Social_event_attendance",
+            "Going_outside",
+            "Drained_after_socializing",
+            "Friends_circle_size",
+            "Post_frequency",
+            "Personality"
+          ],
+          "missing": {
+            "Drained_after_socializing": 923,
+            "Going_outside": 1179,
+            "Friends_circle_size": 829,
+            "Stage_fear": 1506,
+            "Social_event_attendance": 942,
+            "Post_frequency": 1006,
+            "Time_spent_Alone": 925
+          },
+          "target_counts": {
+            "Extrovert": 10959,
+            "Introvert": 3860
+          }
+        }
+      },
+      "images_by_directory": {},
+      "image_sizes": {}
+    }
+  }
+}
