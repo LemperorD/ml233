@@ -68,4 +68,26 @@ python src/install_datasets.py
 
 ## 作业方法指导
 
-八个候选题的题号映射、官方评分指标、截止时间、报告打包要求，以及任务分析、验证划分和模型路线见 [方法指导总览](assets/docs/README.md)。本地数据统计见 [数据概况](assets/docs/data_profile.json)。指南是实现方案，当前尚未运行八个作业的训练与评分。
+八个候选题的题号映射、官方评分指标、截止时间、报告打包要求，以及任务分析、验证划分和模型路线见 [方法指导总览](assets/docs/README.md)。本地数据统计见 [数据概况](assets/docs/data_profile.json)。文档及代码统一按课程编号：个人 1 为葡萄酒，个人 2 为美食；历史数据目录名称保持不变。其余六题目前仅有方法指南。
+
+
+## 个人作业代码
+
+安装训练依赖（PyTorch 可先按上文选择 CPU/CUDA 安装源）：
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+| 课程编号 | 代码及运行说明 | 实际数据目录 |
+| --- | --- | --- |
+| 个人 1：葡萄酒回归 | [src/hw1_person](src/hw1_person/README.md) | `datasets/ml-hw2-person/` |
+| 个人 2：美食分类 | [src/hw2_person](src/hw2_person/README.md) | `datasets/ml-hw1-person/` |
+
+```bash
+python -m src.hw1_person.train --model ridge --output-dir outputs/hw1_person/ridge
+python -m src.hw2_person.train --model cnn --output-dir outputs/hw2_person/cnn
+python -m unittest discover -s tests -v
+```
+
+两份作业各自拥有数据读取、模型、训练、评估、预测模块，各作业的网络在内部复用，无跨作业公共模型层。训练自动保存验证指标、划分、模型及按模板对齐的 `submission.csv`，不自动上传 Kaggle。请使用不同输出目录记录不同实验。测试使用临时合成数据检查全部五种模型的训练、保存加载、独立评估、推理、重复分组隔离和提交 ID 对齐。
