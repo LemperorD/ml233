@@ -1,2 +1,8 @@
 datasets/*
 !datasets/.gitkeep
+
+.kaggle/*
+!.kaggle/.gitkeep
+
+__pycache__/
+*.py[cod]
