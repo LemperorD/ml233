@@ -4,9 +4,12 @@ datasets/*
 .kaggle/*
 !.kaggle/.gitkeep
 
+
+outputs/*
+!outputs/.gitkeep
+
 .vscode/
 
 __pycache__/
 *.py[cod]
 .venv/
-outputs/
